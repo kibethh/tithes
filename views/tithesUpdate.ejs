@@ -1,0 +1,49 @@
+<%- include("head") %>
+<body class="container">
+  <!-- Header section -->
+  <%- include("header") %>
+  <main>
+   
+    <div class="createModify__content">
+      <div class="createModify__content--form__page--field">
+        <input type="text" hidden id="id" name="id" value="<%=tithe[0]._id%>"/>
+  </div>
+      <div class="createModify__content--form__page--field">
+        <label for="date"> Date of Entry</label>
+        <input type="text" id="date" disabled value="<%=tithe[0].createdAt%>"/>
+  </div>
+      <form class="createModify__content--form" name="update">
+        
+        <!-- First page starts here -->
+        <div class="createModify__content--form__page">
+          <h3 class="createModify__content--form__page--title">Update Tithe</h3>
+          <!-- Speaker -->
+          
+          
+          <div class="createModify__content--form__page--field">
+            <label for="tither"> Tither</label>
+            <input type="text" id="tither" name="tither" value="<%=tithe[0].tither%>"/>
+          </div>
+          <div class="createModify__content--form__page--field">
+            <label for="speaker">Tither's Phone Number</label>
+            <input type="text" id="phone" name="phone" value="<%=tithe[0].phone%>"/>
+          </div>
+          <!-- Sermon Title -->
+          <div class="createModify__content--form__page--field">
+            <label for="title"> Amount Tithed</label>
+            <input type="number" id="title" name="amount" value="<%= tithe[0].amount%>"/>
+          </div>
+          
+          
+          <!-- Submit button -->
+          <div class="createModify__content--form__page--field">
+            <button class="submit">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </main>
+
+    <%- include("footer") %>
+  </body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="">
+  <%- include("head") %>
+
+  <body class="container">
+    <!-- Header section -->
+    <%- include("header") %>
+    <%if(user){%>
+      
+    <!-- motto section -->
+    <main class="sermons">
+      <div class="buttons">
+        <a class="submit logout modify__content--link" href="#">Logout</a>
+        
+      </div>
+      <h2 class="sermons__title"><%= monthName +" " %><%= title %></h2>
+      <form class="sermons__search" onsubmit="">
+        <!-- Search Box -->
+        <label for="search_sermon">Filter By Tither's Name:</label>
+        <div>
+          <input type="text" id="search_tither" placeholder="Tither's Name" />
+          <button class="sermons__search--btn">Search</button>
+        </div>
+
+        <!-- Buttons -->
+        <div class="sermons__search--filter-box">
+          <a href="/tithes">All</a>
+
+          <!-- /////////////////////////// -->
+          <% function getMonthNumber(monthName) {
+          <!-- ///////////////////////////////////// -->
+          const months = new Map([ ['January',"0"], ['February',"1"],
+          ['March',"2"], ['April',"3"], ['May',"4"], ['June',"5"], ['July',"6"],
+          ['August',"7"], ['September',"8"], ['October',"9"], ['November',"10"],
+          ['December',"11"], ]);
+
+          <!-- /////////////////////////////// -->
+
+          return months.get(monthName); }
+
+          <!-- ///////////////////////////////////////// -->
+
+          const monthNumber=getMonthNumber(monthName); %>
+
+          <!-- /////////////////////////////////////////// -->
+          <% let indexes=[0,1,2,3,4,5,6,7,8,9,10,11]; const months = [
+          'January', 'February', 'March', 'April', 'May', 'June', 'July',
+          'August', 'September', 'October', 'November', 'December', ];
+
+          <!-- //////////////////////////////////////// -->
+
+          indexes.forEach((i)=>{ %> <% const activeOrNot = (i== monthNumber) ?
+          'active' :''; %>
+          <button
+            class="sermons__search--filter-box__btn <%= activeOrNot %>"
+            data-filter="<%=i%>"
+          >
+            <%=months[i]%>
+          </button>
+          <% }) %>
+        </div>
+      </form>
+      <% if (tithes.length>0){%>
+
+      <div class="sermons__content">
+        <!-- Sermon-->
+
+
+        <% for(let tithe of tithes){%>
+
+        <a href="/tithes/<%= tithe._id %>">
+          <div class="sermons__content--card">
+            <h4 class="sermons__content--card__specialty">
+              <%= tithe.tither.split(" ")[0] %>
+            </h4>
+            <h3 class="sermons__content--card__title">Ksh. <%= tithe.amount %></h3>
+            <h3 class="sermons__content--card__name"></h3>
+          </div>
+        </a>
+        <% }%>
+      </div>
+
+      <!-- Page Buttons -->
+      <section class="page-btns">
+        <div class="page-btns-container">
+          <button class="page-btns-container__prev">Prev</button>
+          <% for(let i=1;i<=(Math.ceil(tithesCount/4));i++){%>
+          <!-- /////////////////////////////// -->
+          <% const activeOrNot = (i== page) ? 'active' :''; %>
+
+          <button
+            class="page-btns-container__item <%= activeOrNot %>"
+            data-page="<%=i%>"
+          >
+            Page <%=i%>
+          </button>
+
+          <%}%>
+
+          <button class="page-btns-container__next">Next</button>
+        </div>
+      </section>
+      <%} else{%>
+        <p class="sermons__title">No Tithes to display</p>
+      <% }%>
+      
+    </main>
+
+    <!-- Scroll to top button -->
+    <div class="scroll"></div>
+    <%}else{ %>
+      <script> document.location.href = '/login' </script>
+      <% } %>
+    <!-- Footer section -->
+    <%- include("footer") %>
+  </body>
+</html>

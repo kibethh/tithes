@@ -1,0 +1,45 @@
+ <%- include("head") %>
+  <body class="container">
+    <!-- Header section -->
+    <%- include("header") %>
+   
+<main class="modify">
+  <h2 class="modify__heading">Modify or Delete</h2>
+  
+<%for (let tithe of tithes){%>
+
+  <div class="modify__content">
+    <h2 class="modify__content--title"><%= tithe.tither%></h2>
+    <h2 class="modify__content--title">Ksh. <%= tithe.amount%></h2>
+    <input type="text" class="Id" value="<%= tithe._id%>" hidden>
+    <a class="modify__content--link" href="/editTithes/<%=tithe._id%>">Edit</a>
+   <a class="modify__content--link delete" href="#">Delete</a>
+
+  </div>
+  <%}%>
+
+    <!-- Page Buttons -->
+      <section class="page-btns">
+        <div class="page-btns-container">
+          <button class="page-btns-container__prev">Prev</button>
+          <% for(let i=1;i<=(Math.ceil(tithesCount/4));i++){%>
+          <!-- /////////////////////////////// -->
+          <% const activeOrNot = (i== page) ? 'active' :''; %>
+
+          <button
+            class="page-btns-container__item <%= activeOrNot %>"
+            data-page="<%=i%>"
+          >
+            Page <%=i%>
+          </button>
+
+          <%}%>
+
+          <button class="page-btns-container__next">Next</button>
+        </div>
+      </section>
+</main>
+
+    <%- include("footer") %>
+  </body>
+</html>

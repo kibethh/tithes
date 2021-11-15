@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("head") %>
+  <body>
+    <%- include("header") %>
+
+    <!-- wholesermon section -->
+    <section class="wholesermon">
+      <!-- Content -->
+      <div class="wholesermon__content">
+        <!-- <i class="fab fa-accessible-icon icons"></i> -->
+        <h2 class="wholesermon__content--title"><%= tithe.tither %> TITHES</h2>
+        <hr>
+        <h2 class="wholesermon__content--title">Date Recorded: <%= tithe.createdAt.toLocaleString("default",{weekday:"long"}) %> <%= tithe.createdAt.getDate()%>th of <%= tithe.createdAt.toLocaleString("default",{month:"short"})%> <%= tithe.createdAt.toLocaleString("default",{year:"numeric"})%></h2>
+        
+        <p class="wholesermon__content--para">KSH <%= tithe.amount %></p>
+
+        <!-- <h2 class="wholesermon__content--title">By: <%= tithe.createdAt %></h2> -->
+      </div>
+    </section>
+
+    <!-- Scroll to top button -->
+    <div class="scroll"></div>
+
+    <!-- Footer section -->
+    <%- include("footer") %>
+  </body>
+</html>

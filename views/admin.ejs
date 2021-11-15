@@ -1,0 +1,57 @@
+<%- include("head") %>
+<!-- First page starts here -->
+<body>
+  <%- include("header") %>
+    <!-- Sermon Modification And Creation section -->
+    <%if(user){%>
+    <section class="create">
+      <h1>Admin Panel</h1>
+       <!-- Submit button -->
+       <div class="buttons">
+        <a class="submit logout modify__content--link" href="#">Logout</a>
+        <a href="/editTithes" class="modify__content--link">Manage Tithers</a>
+      </div>
+      <!-- create content -->
+      <div class="create__content">
+    
+        <form class="create__content--form" name="tithes">
+          <!-- First page starts here -->
+          <div class="create__content--form__page">
+            <h3 class="create__content--form__page--title">Create Tither</h3>
+            <!-- Tither -->
+            <div class="create__content--form__page--field">
+              <label for="tither"> Name of the Tither</label>
+              <input type="text" id="tither" name="tither" />
+            </div>
+            <!-- Phone Number -->
+            <div class="create__content--form__page--field">
+              <label for="phone"> Phone Number</label>
+              <input type="number" id="phone" min-length="10" max-length="15" name="phone" />
+            </div>
+            <!-- Amount -->
+            <div class="create__content--form__page--field">
+              <label for="amount"> Tithed Amount</label>
+              <input type="number" id="amount" name="amount" />
+            </div>
+            
+            
+            <!-- Submit button -->
+            <div class="create__content--form__page--field">
+              <button class="submit">Submit</button>
+            </div>
+          </div>
+        </form>
+
+          
+
+       
+       
+      </div>
+    </section>
+    <%}else{ %>
+    <script> document.location.href = '/login' </script>
+    <% } %>
+
+    <%- include("footer") %>
+  </body>
+</html>
